@@ -259,10 +259,21 @@ int cmd_uefi_list_variable(int argc, const console_cmd_args *argv) {
   return 0;
 }
 
+#if WITH_TESTS
+int cmd_uefi_proto_test(int argc, const console_cmd_args *argv) {
+  uefi_protocol_cache_selftest();
+  return 0;
+}
+#endif  // WITH_TESTS
+
 STATIC_COMMAND_START
 STATIC_COMMAND("uefi_load", "load UEFI application and run it", &cmd_uefi_load)
 STATIC_COMMAND("uefi_set_var", "set UEFI variable", &cmd_uefi_set_variable)
 STATIC_COMMAND("uefi_list_var", "list UEFI variable", &cmd_uefi_list_variable)
+#if WITH_TESTS
+STATIC_COMMAND("uefi_proto_test", "protocol interface cache self-test",
+               &cmd_uefi_proto_test)
+#endif  // WITH_TESTS
 STATIC_COMMAND_END(uefi);
 
 } // namespace

@@ -139,4 +139,10 @@ static constexpr auto EFI_ERASE_BLOCK_PROTOCOL_GUID =
 // different platforms can override with their own implementation.
 EfiStatus exit_boot_services(EfiHandle image_handle, size_t map_key);
 
+#if WITH_TESTS
+// Console self-test for the protocol interface cache (see boot_service_provider.cpp).
+// Test/debug builds only; excluded from production via WITH_TESTS.
+void uefi_protocol_cache_selftest();
+#endif
+
 #endif
